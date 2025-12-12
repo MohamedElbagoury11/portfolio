@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 import { metaImagesPlugin } from "./vite-plugin-meta-images";
 
 export default defineConfig({
-  base: '/Elbagoury-Portfolio/',
+  base: '/elbagoury-Portfolio/',
   plugins: [
     react(),
     runtimeErrorOverlay(),
