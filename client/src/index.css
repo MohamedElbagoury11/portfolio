@@ -116,3 +116,45 @@
     @apply bg-clip-text text-transparent bg-linear-to-r from-primary to-purple-400 dark:to-purple-300;
   }
 }
+
+/* Smooth scrolling and scroll-snap helpers */
+:root {
+  --nav-height: 72px; /* adjust if your navbar height changes */
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
+.snap-y {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Hero accent background */
+.hero-gradient {
+  background-image: radial-gradient(600px 400px at 10% 20%, rgba(124,58,237,0.12), transparent 20%), radial-gradient(500px 300px at 90% 80%, rgba(236,72,153,0.08), transparent 20%);
+}
+
+/* Page container max width utility to keep content centered */
+.page-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}

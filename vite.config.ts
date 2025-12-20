@@ -2,13 +2,14 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import { defineConfig } from "vite";
-import { metaImagesPlugin } from "./vite-plugin-meta-images";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: '/elbagoury-Portfolio/',
-  plugins: [
-    react(),
+  plugins: [react()],
+  // Leave `base` empty so the workflow can deploy to any repo name.
+  // If you host under a repository named `elbagoury-portfolio`, set base to '/elbagoury-portfolio/'.
+});
     runtimeErrorOverlay(),
     tailwindcss(),
     metaImagesPlugin(),

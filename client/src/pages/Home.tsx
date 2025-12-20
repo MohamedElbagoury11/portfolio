@@ -3,6 +3,8 @@ import { Layout } from "@/components/Layout";
 import { ArrowRight, Download, Code2, Smartphone, Database } from "lucide-react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import Reveal from "@/components/Reveal";
 
 const container = {
   hidden: { opacity: 0 },
@@ -21,9 +23,39 @@ const item = {
 };
 
 export default function Home() {
+  const parallaxRef = useRef<HTMLDivElement | null>(null);
+
+  // lightweight parallax for floating cards using rAF for smoothness
+  useEffect(() => {
+    const el = parallaxRef.current;
+    if (!el) return;
+
+    let ticking = false;
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY || window.pageYOffset;
+          // small translate for parallax, adjust factor as needed
+          const offset = Math.min(120, Math.max(-120, y * 0.06));
+          el.style.transform = `translateY(${offset}px)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <Layout>
-      <div className="min-h-[85vh] flex flex-col justify-center items-start gap-8 relative">
+      <div className="snap-y snap-mandatory scroll-smooth">
+        {/* Section: Hero */}
+        <section id="home" className="snap-start min-h-screen flex items-center hero-gradient">
+          <div className="page-container mx-auto px-6">
+            <div className="min-h-[85vh] flex flex-col justify-center items-start gap-8 relative">
         
         <motion.div
           variants={container}
@@ -49,28 +81,32 @@ export default function Home() {
           </motion.h1>
           
           <motion.p variants={item} className="text-xl md:text-2xl text-muted-foreground max-w-2xl mb-10 leading-relaxed font-light">
-            I'm <strong className="text-foreground font-semibold">Mido Mahmoud</strong>, a Flutter Developer & UI Engineer. 
+            I'm <strong className="text-foreground font-semibold">Mohamed Elbagoury</strong>, a Flutter Developer & UI Engineer. 
             I craft fluid, high-performance mobile experiences that feel alive.
           </motion.p>
           
           <motion.div variants={item} className="flex flex-wrap gap-4">
-            <Link href="/projects">
-              <Button size="lg" className="rounded-full h-16 px-10 text-lg gap-2 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:scale-105 transition-all duration-300">
-                View My Work <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
-            <Button size="lg" variant="ghost" className="rounded-full h-16 px-10 text-lg gap-2 border-2 border-border hover:bg-primary/5 hover:border-primary/50 hover:scale-105 transition-all duration-300">
-              Download CV <Download className="w-5 h-5" />
-            </Button>
+                  <a href="#projects">
+                    <Button size="lg" className="rounded-full h-14 md:h-16 px-8 md:px-10 text-lg gap-2 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:scale-105 transition-all duration-300">
+                      View My Work <ArrowRight className="w-5 h-5" />
+                    </Button>
+                  </a>
+                  <a href="#contact">
+                    <Button size="lg" variant="ghost" className="rounded-full h-14 md:h-16 px-8 md:px-10 text-lg gap-2 border-2 border-border hover:bg-primary/5 hover:border-primary/50 hover:scale-105 transition-all duration-300">
+                      Download CV <Download className="w-5 h-5" />
+                    </Button>
+                  </a>
           </motion.div>
         </motion.div>
 
         {/* Floating Cards Decoration */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 z-10"
+          className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 z-10 will-change-transform"
+          ref={parallaxRef}
+          style={{ willChange: "transform" }}
         >
           <div className="relative w-[500px] h-[600px]">
             <motion.div 
@@ -105,27 +141,89 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Stats Bar */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="w-full mt-auto border-t border-border/40 pt-12"
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { number: "3+", label: "Years Experience" },
-              { number: "20+", label: "Projects Delivered" },
-              { number: "100%", label: "Client Satisfaction" },
-              { number: "24/7", label: "Active Support" },
-            ].map((stat, index) => (
-              <div key={index} className="group cursor-default">
-                <h3 className="text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 font-heading">{stat.number}</h3>
-                <p className="text-muted-foreground group-hover:translate-x-2 transition-transform duration-300">{stat.label}</p>
-              </div>
-            ))}
+              {/* Stats Bar */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 0.8 }}
+                className="w-full mt-auto border-t border-border/40 pt-12"
+              >
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  {[
+                    { number: "2+", label: "Years Experience" },
+                    { number: "4+", label: "Projects Delivered" },
+                    { number: "100%", label: "Client Satisfaction" },
+                    { number: "24/7", label: "Active Support" },
+                  ].map((stat, index) => (
+                    <div key={index} className="group cursor-default">
+                      <h3 className="text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 font-heading">{stat.number}</h3>
+                      <p className="text-muted-foreground group-hover:translate-x-2 transition-transform duration-300">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </section>
+
+        {/* Section: About */}
+        <section id="about" className="snap-start min-h-screen flex items-center bg-transparent">
+          <div className="container mx-auto px-6 py-24">
+            <Reveal type="slideUp">
+              <h2 className="text-4xl font-heading font-bold mb-6">About Me</h2>
+              <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
+                I'm a Flutter developer focused on building pixel-perfect mobile apps and delightful UX.
+                I work across the stack to deliver production-ready features, from design collaboration to backend integration.
+              </p>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Section: Projects preview */}
+        <section id="projects" className="snap-start min-h-screen flex items-center">
+          <div className="container mx-auto px-6 py-24">
+            <Reveal type="slideUp">
+              <h2 className="text-4xl font-heading font-bold mb-6">Selected Projects</h2>
+              <p className="text-muted-foreground mb-8">A curated selection of apps and demos.</p>
+            </Reveal>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <Reveal className="glass-panel p-6 rounded-2xl" type="slideUp">
+                <h3 className="font-bold mb-2">ShopFlow</h3>
+                <p className="text-sm text-muted-foreground">E-commerce mobile app with cart and checkout.</p>
+              </Reveal>
+
+              <Reveal className="glass-panel p-6 rounded-2xl" type="slideUp">
+                <h3 className="font-bold mb-2">TaskMaster</h3>
+                <p className="text-sm text-muted-foreground">Productivity app with offline sync.</p>
+              </Reveal>
+
+              <Reveal className="glass-panel p-6 rounded-2xl" type="slideUp">
+                <h3 className="font-bold mb-2">FitTrack</h3>
+                <p className="text-sm text-muted-foreground">Fitness tracker with analytics dashboard.</p>
+              </Reveal>
+            </div>
+
+            <div className="mt-8">
+              <a href="/projects">
+                <Button variant="outline">View all projects</Button>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Section: Contact CTA */}
+        <section id="contact" className="snap-start min-h-screen flex items-center bg-gradient-to-b from-background/30 to-background/10">
+          <div className="container mx-auto px-6 py-24">
+            <Reveal type="slideUp">
+              <h2 className="text-4xl font-heading font-bold mb-4">Let's Talk</h2>
+              <p className="text-muted-foreground mb-6">Have a project or idea? Reach out and let's build something great.</p>
+              <a href="#contact" className="inline-block">
+                <Button size="lg">Contact Me</Button>
+              </a>
+            </Reveal>
+          </div>
+        </section>
       </div>
     </Layout>
   );

@@ -35,8 +35,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-medium mb-1">Email</h4>
-                  <a href="mailto:contact@mido.dev" className="text-muted-foreground hover:text-primary transition-colors">
-                    contact@mido.dev
+                  <a href="mailto:MohamedElbagoury150@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    MohamedElbagoury150@gmail.com
                   </a>
                 </div>
               </div>
@@ -46,10 +46,12 @@ export default function Contact() {
                   <Phone className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">Phone</h4>
-                  <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                  <h4 className="font-medium mb-1">whatsapp</h4>
+                  <p className="text-muted-foreground">01020074013</p>
                 </div>
               </div>
+              
+              
 
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-xl text-primary">
@@ -70,7 +72,7 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <form 
-              action="https://formsubmit.co/your-email@example.com" 
+              action="https://formsubmit.co/mohamedelbagoury150@gmail.com" 
               method="POST"
               className="glass-panel p-8 rounded-3xl space-y-6"
             >

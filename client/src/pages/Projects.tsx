@@ -7,20 +7,20 @@ import fitnessImg from "@assets/generated_images/fitness_app_mockup.png";
 export default function Projects() {
   const projects = [
     {
-      title: "ShopFlow - E-commerce App",
-      description: "A full-featured e-commerce application built with Flutter. Features include product browsing, cart management, secure checkout integration with Stripe, and real-time order tracking.",
+      title: "TradeLoop - Retail Management App",
+      description: "TradeLoop helps retailers efficiently manage their orders, traders, and buyers in one platform. Users can create detailed orders, track their status from pending to delivered, notify buyers, and automatically generate invoices with total purchase, sales, and profit. I designed and developed the app to streamline retail operations with a clean, intuitive interface and smooth workflow.",
       image: ecommerceImg,
-      tags: ["Flutter", "Firebase", "Stripe", "Provider"],
+      tags: ["Flutter", "Firebase", "Supabase Storage", "bloc","clean architecture"],
       demoUrl: "#",
-      repoUrl: "#"
+      repoUrl: "https://github.com/MohamedElbagoury11/Orders-Management"
     },
     {
-      title: "TaskMaster - Productivity Tool",
-      description: "A sleek task management app designed to boost productivity. Includes features like drag-and-drop organization, dark mode, cloud sync, and smart reminders.",
+      title: "law Office Management Web and Mobile App",
+      description: "Law Office Management helps law firms streamline case and client management. Lawyers can create, update, and track cases, while owners assign tasks and monitor performance. I developed the app with a clean, intuitive interface and robust backend to make law office operations efficient and transparent.",
       image: taskImg,
-      tags: ["Flutter", "Bloc", "SQLite", "Local Notifications"],
+      tags: ["Flutter", "Bloc", "firebase", "Local Notifications", "clean architecture","Supabase Storage"],
       demoUrl: "#",
-      repoUrl: "#"
+      repoUrl: "https://github.com/MohamedElbagoury11/LawOfficeMangment"
     },
     {
       title: "FitTrack - Social Fitness",
