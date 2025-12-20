@@ -1,0 +1,5 @@
+Archived build artifacts and duplicate images from `assets/`.
+
+Original files moved out of `assets/` to avoid duplication with `attached_assets/generated_images/`.
+
+If you need any of these files restored into the public site, tell me which ones.
