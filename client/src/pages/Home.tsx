@@ -205,9 +205,9 @@ export default function Home() {
             </div>
 
             <div className="mt-8">
-              <a href="/projects">
+              <Link href="/projects">
                 <Button variant="outline">View all projects</Button>
-              </a>
+              </Link>
             </div>
           </div>
         </section>
