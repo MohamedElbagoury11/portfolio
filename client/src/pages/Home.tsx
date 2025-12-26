@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/Layout";
-import { ArrowRight, Download, Code2, Smartphone, Database } from "lucide-react";
-import { Link } from "wouter";
-import { motion } from "framer-motion";
-import React, { useEffect, useRef } from "react";
 import Reveal from "@/components/Reveal";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { ArrowRight, Code2, Database, Download, Smartphone } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { Link } from "wouter";
 
 const container = {
   hidden: { opacity: 0 },
@@ -91,7 +91,7 @@ export default function Home() {
                       View My Work <ArrowRight className="w-5 h-5" />
                     </Button>
                   </a>
-                  <a href="#contact">
+                  <a href={`${import.meta.env.BASE_URL}resume.pdf`} download="Mohamed_Elbagoury_Resume.pdf">
                     <Button size="lg" variant="ghost" className="rounded-full h-14 md:h-16 px-8 md:px-10 text-lg gap-2 border-2 border-border hover:bg-primary/5 hover:border-primary/50 hover:scale-105 transition-all duration-300">
                       Download CV <Download className="w-5 h-5" />
                     </Button>
